@@ -1,0 +1,263 @@
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+
+a.toplink:hover {
+    text-decoration: underline;
+}
+
+.ia_image {
+    width: 100%;
+    max-width: 200px;
+
+    height: 100%;
+    max-height: 200px;
+}
+
+
+.tabs {
+    font-size: .92em;
+}
+
+.search-button-icon {
+    color: rgb(219, 219, 219)
+}
+
+.search-button-icon:hover {
+    color: rgb(74, 74, 74);
+}
+
+.icon-spacing {
+    margin-right: 3px;
+}
+
+/*@media screen and (max-width: 768px) {*/
+/*    .dashboard-right-desktop, .icon-spacing {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+
+.toplink {
+    color: black;
+    font-size: .95em;
+}
+
+
+#style-1::-webkit-scrollbar {
+    all: unset;
+    width: 8px;
+}
+
+#style-1::-webkit-scrollbar-thumb {
+    background-color: #C1C1C1;
+    border-radius: 4px;
+
+}
+
+#style-1:hover::-webkit-scrollbar-thumb {
+    background-color: #7D7D7D;
+}
+
+.card-content {
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+}
+
+.column {
+    padding-top: .40rem;
+    padding-bottom: .40rem;
+    margin: 0;
+}
+
+.desc {
+    font-size: .9em;
+}
+
+.bottom-url {
+    font-size: .9em;
+}
+
+.external-text {
+    font-size: .95em;
+    text-align: center;
+}
+
+.external {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-row-gap: .25rem;
+    grid-column-gap: .25rem;
+}
+
+.first-tab {
+    margin-left: 60px;
+}
+
+.card {
+    margin-bottom: .80rem;
+}
+
+.grid {
+    margin: .5rem;
+}
+
+.grid:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.grid-sizer,
+.grid-item {
+    width: 20%;
+}
+
+.grid-item {
+    float: right;
+    margin: -.2em;
+}
+
+.grid-image {
+    display: block;
+    width: 100%;
+    padding: .25rem;
+}
+
+.grid-image:hover .overlay {
+    height: 20px;
+}
+
+.text {
+    color: white;
+    font-size: 1vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.overlay {
+    display: inherit;
+    position: absolute;
+    bottom: 1rem;
+    left: .25rem;
+    right: .25rem;
+    overflow: hidden;
+    height: 0;
+    transition: .3s ease;
+    background: rgb(60, 60, 60);
+    background: rgba(60, 60, 60, 0.75);
+}
+
+.text a:hover {
+    text-decoration: underline;
+}
+
+.text a {
+    color: white;
+}
+
+.bounce {
+    overflow: hidden;
+}
+
+.bounce span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    line-height: 50px;
+    text-align: center;
+    -moz-transform: translateX(25%);
+    -webkit-transform: translateX(25%);
+    transform: translateX(25%);
+    -moz-animation: bouncing-text 4s linear infinite alternate;
+    -webkit-animation: bouncing-text 4s linear infinite alternate;
+    animation: bouncing-text 8s linear infinite alternate;
+}
+
+.bounce span:hover {
+    animation-play-state: paused;
+}
+
+@-moz-keyframes bouncing-text {
+    0% {
+        -moz-transform: translateX(25%);
+    }
+    100% {
+        -moz-transform: translateX(-25%);
+    }
+}
+
+@-webkit-keyframes bouncing-text {
+    0% {
+        -webkit-transform: translateX(25%);
+    }
+    100% {
+        -webkit-transform: translateX(-25%);
+    }
+}
+
+@keyframes bouncing-text {
+    0% {
+        -moz-transform: translateX(25%);
+        -webkit-transform: translateX(25%);
+        transform: translateX(25%);
+    }
+    100% {
+        -moz-transform: translateX(-25%);
+        -webkit-transform: translateX(-25%);
+        transform: translateX(-25%);
+    }
+}
+
+.results_column {
+    padding-left: 72px;
+}
+
+#form_div {
+    padding-right: .6%;
+}
+
+@media screen and (max-width: 768px) {
+    .results_column {
+        padding-left: .75rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar_column {
+        margin-left: .75rem;
+    }
+    #form_div {
+        padding-right: 0;
+    }
+
+    .grid-sizer, .grid-item {
+        width: 50%;
+    }
+
+}
+
+.external-icon {
+    vertical-align: middle;
+    /*margin-right: 5px;*/
+    height: 20px;
+    width: 20px;
+    min-width: 10px;
+    min-height: 10px;
+}
+
+.settings_button_mobile {
+    margin-left: 10px;
+}
+
+.panel-heading, .panel-tabs, .panel-block {
+    font-size: .75rem;
+}
+

@@ -1,0 +1,16 @@
+<div class="card" id="calculator">
+    <div class="card-content">
+        <div class="content">
+            <a></a>
+            <div class="columns is-mobile">
+                <div class="column is-4" style="padding-right: 0; margin-right: 0">
+                    <input id="calc" class="input is-medium" type="search" value="{{ query }}" onkeyup="calculate();">
+                </div>
+                <div class="column is-8">
+                    <img src="/static/images/fa/equals.svg" style="width: 16px; height: 16px; cursor: pointer" onload="calculate();" onclick="calculate();">
+                    <span id="solution" style="font-size: xx-large; padding-left: .75rem;"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

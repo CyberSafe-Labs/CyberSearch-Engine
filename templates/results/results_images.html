@@ -1,0 +1,29 @@
+{% if current == 'images' %}
+    {% if image_results|length == 0 %}
+        <div class="card">
+            <div class="card-content">
+                <div class="content">
+                    We couldn't find any results for <b>"{{ query }}"</b>.
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <div class="grid" style="margin-top: 0">
+        <div class="grid-sizer"></div>
+        {% for link in image_results %}
+            <div class="grid-item">
+                <div class="grid-image">
+                    <a href="{{ link.img_src }}" rel="noreferrer">
+                        <img src="/proxy/image?url={{ link.thumbnail_src }}"
+                             onload="$('.grid').masonry({itemSelector: '.grid-item', percentPosition: true, columnWidth: '.grid-sizer'});">
+                    </a>
+                    <div class="overlay bounce">
+                        <span><div class="text"><a href="{{ link.url }}" rel="noreferrer" style="font-size: 12px !important;"> {{ link.source }}</a></span>
+                    </div>
+                </div>
+            </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endif %}

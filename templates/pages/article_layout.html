@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Infinity Search</title>
+    <meta name="description" content="Premium search engine">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/is/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/is/favicon_32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/is/favicon_16.png">
+    <link rel="manifest" href="/static/images/is/site.webmanifest">
+    <link rel="mask-icon" href="/static/images/is/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="search" type="application/opensearchdescription+xml" title="Infinity Search"
+          href="https://www.infinitysearchsolo.com/opensearch.xml">
+    <link rel="stylesheet" href="/static/css/bulma.min.css">
+    <link rel="stylesheet" href="/static/css/article_layout.css">
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <script src="/static/js/article_layout.js" defer></script>
+</head>
+<body class="Site">
+<div class="Site-content">
+    <div style="text-align: right; padding-left: 20%; padding-right: 20%">
+        <div class="column" style="padding-bottom: 0">
+            {% if success == True %}
+                <div class="column">
+                    <div class="notification is-success" id="exito" style="text-align: left">
+                        <button class="delete" onclick="document.getElementById('exito').hidden=true;"></button>
+                        {{ msg }}
+                    </div>
+                </div>
+            {% endif %}
+            {% if success == False %}
+                <div class="column">
+                    <div class="notification is-danger" id="failure" style="text-align: left">
+                        <button class="delete" onclick="document.getElementById('failure').hidden=true;"></button>
+                        {{ msg }}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div style="text-align: center; padding-bottom: 15px; margin-top: 5px;">
+        <a href="/" id="logo_article" style="display: inline-block">
+            <img id="logo_img_article" src="/static/images/is/logo_circle_color.png"
+                 style="vertical-align:middle; cursor: pointer; border-radius: 50%;" width="75px" height="75px" alt="">
+        </a>
+    </div>
+    <style id="custom_css_placeholder_article">
+
+    </style>
+    <div class="content" style="padding-left: 20%; padding-right: 20%">
+        {% block article %}
+        {% endblock %}
+    </div>
+</div>
+<footer class="footer footer-settings">
+    <div class="column is-half is-offset-one-quarter">
+        <div class="columns is-vcentered is-mobile">
+            <a class="column is-one-third cl-footer-link" href="/about">
+                About
+            </a>
+            <a class="column is-one-third cl-footer-link" href="/privacy">
+                Privacy Policy
+            </a>
+            <a class="column is-one-third cl-footer-link" href="/contact">
+                Contact
+            </a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

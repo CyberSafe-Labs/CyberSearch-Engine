@@ -1,0 +1,149 @@
+<div style="padding-top: 12px;"></div>
+<div class="column" style="padding-bottom: 0;">
+    <div class="columns">
+        <div class="column is-9">
+            {% if current == 'web' %}
+                <form action="/results" method="post" id="input_form" autocomplete="off">
+            {% else %}
+                <form action="/results/{{ current }}" method="post" id="input_form" autocomplete="off">
+            {% endif %}
+            <div id="form_div">
+                <a href="/">
+                    <a href="/" style="display: inline-block; float: left;" id="logo_result">
+                        <img id="logo_img_result"
+                             src="/static/images/is/logo_circle_black.png" height="49px"
+                             width="49px">
+                    </a>
+                </a>
+                <div id="input_text_area" class="field has-addons">
+                    <div class="control is-expanded" style="margin-left: 12px;">
+                        <input id="search_query" class="input is-medium" type="search" placeholder=""
+                               value="{{ query }}" name="Search"
+                               required>
+                    </div>
+                    <div class="control">
+                        <button class="button input is-medium search-button-icon"><img src="/static/images/fa/search.svg" style="height: 22px; width: 22px; min-width: .87em;"></button>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div id="dashboard_icons_area" class="column is-3 dashboard-right-desktop" style="text-align: right">
+            <div id="dropdown_settings_area"></div>
+            <div class="dropdown is-right" id="dropdown-settings">
+                <div class="dropdown-trigger">
+                    <button type="button" class="button" id="dropdown-settings-button" aria-haspopup="true"
+                            aria-controls="dropdown-settings-content">
+                        <img src="/static/images/fa/cog.svg" style="width: 16px; height: 16px; min-width: .87em;">
+                    </button>
+                </div>
+                <div class="dropdown-menu" id="dropdown-settings-content" role="menu">
+                    <div class="dropdown-content">
+                        <div class="dropdown-item" style="text-align: left;">
+                            <button type="button" id="theme_button" class="button" onclick="toggleTheme();"><img id="id-theme-image" src="/static/images/fa/plus.svg" style="width: 16px; height: 16px;">
+                            </button>
+                            <button type="button" id="externals_layout_button" class="button" onclick="toggleExternalsLayout();"><img id="id-externals-layout-img" src="/static/images/fa/th.svg" style="width: 16px; height: 16px;">
+                            </button>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="dropdown-item" style="text-align: left;">
+                            <span class="cl-dropdown-text" style="display: inline-block; line-height: 2em;">font</span>
+                            <div class="select is-rounded is-small">
+                                <select id="font-select" onchange="fontChange()">
+                                    <option
+                                        value="BlinkMacSystemFont,-apple-system,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Fira Sans','Droid Sans','Helvetica Neue',Helvetica,Arial,sans-serif">
+                                        default
+                                    </option>
+                                    <option value="'Roboto', sans-serif">roboto</option>
+                                    <option value="'Alfa Slab One', cursive">alfa slab one</option>
+                                    <option value="'Courier Prime', monospace">courier prime</option>
+                                    <option value="'Grenze Gotisch', cursive">grenze gotisch</option>
+                                    <option value="'Ubuntu', sans-serif">ubuntu</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="dropdown-item" style="text-align: left;">
+                            <span class="cl-dropdown-text" style="display: inline-block; line-height: 2em;">size</span>
+                            <span>
+                                <button type="button" class="button is-small" id="font-minus"><img src="/static/images/fa/minus.svg" style="width: 12px; height: 12px;"></button>
+                                <button type="button" class="button is-small" id="font-size">7</button>
+                                <button type="button" class="button is-small" id="font-plus"><img src="/static/images/fa/plus.svg" style="width: 12px; height: 12px;"></button>
+                            </span>
+                        </div>
+                        <div class="dropdown-item" style="text-align: left;">
+                            <div class="field" id="condense">
+                                <div class="columns is-vcentered">
+                                    <div class="column">
+                                        <span class="cl-dropdown-text">condense</span>
+                                    </div>
+                                    <div class="column">
+                                        <input id="condense-switch" type="checkbox" name="condense-switch"
+                                               class="checkbox" onchange="toggleCondense();">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown-item" style="text-align: left;">
+                            <div class="field" id="newtab">
+                                <div class="columns is-vcentered">
+                                    <div class="column">
+                                        <span class="cl-dropdown-text">new tab</span>
+                                    </div>
+                                    <div class="column">
+                                        <input id="newtab-switch" type="checkbox" name="newtab-switch" class="checkbox"
+                                               onchange="toggleNewTab();">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown-item" style="text-align: left;">
+                            <div class="field" id="id-site-icons">
+                                <div class="columns is-vcentered">
+                                    <div class="column">
+                                        <span class="cl-dropdown-text">site icons</span>
+                                    </div>
+                                    <div class="column">
+                                        <input id="id-site-icons-switch" type="checkbox" name="id-site-icons-switch"
+                                               class="checkbox" onchange="toggleSiteIcons();">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown-item" style="text-align: center;">
+                            <a href="/advanced_settings" style="font-size: small;">advanced</a>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="dropdown-item" style="text-align: center;">
+                            <button type="button" class="button is-small is-danger is-outlined" id="setting-reset">
+                                reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a id="default_browser_button" class="button" href="/default"><img class="icon-spacing" src="/static/images/fa/firefox.svg" style="width: 16px; height: 16px;"><img class="icon-spacing" src="/static/images/fa/chrome.svg" style="width: 16px; height: 16px;"> <img class="icon-spacing" src="/static/images/fa/opera.svg" style="width: 16px; height: 16px;"> <img src="/static/images/fa/plus.svg" style="width: 16px; height: 16px;"></a>
+        </div>
+    </div>
+</div>
+
+<div class="column" style="margin-top: 5px; padding-bottom: 0;">
+    <div class="tabs">
+        <ul>
+            {% if current == 'web' %}
+                <li class="is-active first-tab"><a onclick="change_tab('/results?q=')">Web</a></li>
+            {% else %}
+                <li class="first-tab"><a onclick="change_tab('/results?q=')">Web</a></li>
+            {% endif %}
+            {% if current == 'images' %}
+                <li class="is-active"><a onclick="change_tab('/results/images?q=')">Images</a></li>
+            {% else %}
+                <li><a onclick="change_tab('/results/images?q=')">Images</a></li>
+            {% endif %}
+            {% if current == 'videos' %}
+                <li class="is-active"><a onclick="change_tab('/results/videos?q=')">Videos</a></li>
+            {% else %}
+                <li><a onclick="change_tab('/results/videos?q=')">Videos</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>

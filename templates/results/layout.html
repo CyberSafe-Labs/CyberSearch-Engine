@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'results/results_top.html' %}
+<body>
+
+<!--The input boxes  -->
+{% include 'results/results_input.html' %}
+<div class="columns">
+    <div class="column is-9 results_column" style="padding-top: 1.2rem; padding-right: .5rem;">
+        <div class="column" id="loading_bar" style="padding-top: 0;">
+            <div class="column" style="padding-top: 0; padding-bottom: 0; margin-bottom: 0;"></div>
+            <div class="card">
+                <div class="card-content">
+                    <div class="content">
+
+                        <noscript>It appears that your Javascript is disabled. To view results on this page, you will
+                            need to enable it. You might want to visit our
+                            <a href="/lite/results">lite results</a>.
+                        </noscript>
+
+                        <progress class="progress is-large" max="100">60%</progress>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="results">
+        </div>
+
+
+    </div>
+    <div class="column is-3 sidebar_column" style="padding-top: 1.2rem; padding-right: 1.5rem">
+
+        {% include 'results/results_advanced_search.html' %}
+
+        <div id="externals">
+
+        </div>
+        <div id="externals_menu">
+            {% include 'results/results_external.html' %}
+        </div>
+        <br>
+    </div>
+</div>
+
+<div id="images_hidden" hidden></div>
+<!-- The footer and scripts  -->
+{% include 'results/results_bottom.html' %}
+{% include 'results/layout_script.html' %}
+
+<script src="/static/js/results.js"></script>
+<script src="/static/js/unit_conversion.js" defer></script>
+<script src="/static/js/color_picker.js" defer></script>
+<script src="/static/js/rand_num_generation.js" defer></script>
+<script src="/static/js/stopwatch_timer.js" defer></script>
+<script src="/static/js/theme_bottom.js" defer></script>
+<style id="custom_css_placeholder_results">
+
+</style>
+</body>
+</html>

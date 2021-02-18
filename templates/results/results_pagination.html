@@ -1,0 +1,111 @@
+{% if current == 'web'%}
+    <div class="column">
+    <form action="/results" method="post">
+        <nav class="pagination is-centered" role="navigation" aria-label="pagination"
+             style="margin-bottom: auto;">
+
+
+      {% if page_number == 1 %}
+        <a class="pagination-previous">Previous</a>
+        <a href="/results?q={{query}}&page_number={{page_number + 1}}" class="pagination-next">Next page</a>
+        <ul class="pagination-list">
+            <li><a class="pagination-link is-current" aria-label="Goto page 1">1</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li><a href="/results?q={{query}}&page_number={{page_number + 1}}" class="pagination-link" aria-label="Goto page {{page_number + 1}}">{{page_number + 1}}</a></li>
+            <li><a href="/results?q={{query}}&page_number={{page_number + 2}}" class="pagination-link" aria-label="Page {{page_number + 2}}" aria-current="page"> {{page_number + 2}}</a></li>
+            <li><a href="/results?q={{query}}&page_number={{page_number + 3}}" class="pagination-link" aria-label="Goto page {{page_number + 3}}">{{page_number + 3}}</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li><a href="/results?q={{query}}&page_number={{page_number + 8}}" class="pagination-link" aria-label="Goto page {{page_number + 8}}">{{page_number + 8}}</a></li>
+
+      {% endif %}
+
+      {% if page_number == 2 %}
+        <a href="/results?q={{query}}&page_number={{page_number - 1}}" class="pagination-previous">Previous</a>
+        <a href="/results?q={{query}}&page_number={{page_number + 1}}" class="pagination-next">Next page</a>
+        <ul class="pagination-list">
+            <li><a href="/results?q={{query}}&page_number=1" class="pagination-link" aria-label="Goto page 1">1</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li><a href="/results?q={{query}}&page_number={{page_number}}" class="pagination-link is-current" aria-label="Goto page {{page_number}}">{{page_number}}</a></li>
+            <li><a href="/results?q={{query}}&page_number={{page_number + 1}}" class="pagination-link" aria-label="Page {{page_number + 1}}" aria-current="page"> {{page_number + 1}}</a></li>
+            <li><a href="/results?q={{query}}&page_number={{page_number + 2}}" class="pagination-link" aria-label="Goto page {{page_number + 2}}">{{page_number + 2}}</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li><a href="/results?q={{query}}&page_number={{page_number + 8}}" class="pagination-link" aria-label="Goto page {{page_number + 8}}">{{page_number + 8}}</a></li>
+
+      {% endif %}
+
+      {% if page_number > 2 %}
+        <a href="/results?q={{query}}&page_number={{page_number - 1}}" class="pagination-previous">Previous</a>
+        <a href="/results?q={{query}}&page_number={{page_number + 1}}" class="pagination-next">Next page</a>
+        <ul class="pagination-list">
+            <li><a href="/results?q={{query}}&page_number=1" class="pagination-link" aria-label="Goto page 1">1</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li><a href="/results?q={{query}}&page_number={{page_number - 1}}" class="pagination-link" aria-label="Goto page {{page_number - 1}}">{{page_number - 1}}</a></li>
+            <li><a href="/results?q={{query}}&page_number={{page_number}}" class="pagination-link is-current" aria-label="Page {{page_number}}" aria-current="page"> {{page_number}}</a></li>
+            <li><a href="/results?q={{query}}&page_number={{page_number + 1}}" class="pagination-link" aria-label="Goto page {{page_number + 1}}">{{page_number + 1}}</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li><a href="/results?q={{query}}&page_number={{page_number + 8}}" class="pagination-link" aria-label="Goto page {{page_number + 8}}">{{page_number + 8}}</a></li>
+
+      {% endif %}
+
+      </ul>
+    </nav>
+        <input type="text" hidden value="{{query}}">
+    </form>
+    </div>
+{% endif %}
+
+{% if current != 'web' %}
+    <div class="column">
+    <form action="/results/{{current}}" method="post">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+
+        {% if page_number == 1 %}
+        <a class="pagination-previous">Previous</a>
+        <a href="/results/{{current}}?q={{query}}&page_number={{page_number + 1}}" class="pagination-next">Next page</a>
+        <ul class="pagination-list">
+            <li><a class="pagination-link is-current" aria-label="Goto page 1">1</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li><a href="/results/{{current}}?q={{query}}&page_number={{page_number + 1}}" class="pagination-link" aria-label="Goto page {{page_number + 1}}">{{page_number + 1}}</a></li>
+            <li><a href="/results/{{current}}?q={{query}}&page_number={{page_number + 2}}" class="pagination-link" aria-label="Page {{page_number + 2}}" aria-current="page"> {{page_number + 2}}</a></li>
+            <li><a href="/results/{{current}}?q={{query}}&page_number={{page_number + 3}}" class="pagination-link" aria-label="Goto page {{page_number + 3}}">{{page_number + 3}}</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li><a href="/results/{{current}}?q={{query}}&page_number={{page_number + 8}}" class="pagination-link" aria-label="Goto page {{page_number + 8}}">{{page_number + 8}}</a></li>
+
+      {% endif %}
+
+      {% if page_number == 2 %}
+        <a href="/results/{{current}}?q={{query}}&page_number={{page_number - 1}}" class="pagination-previous">Previous</a>
+        <a href="/results/{{current}}?q={{query}}&page_number={{page_number + 1}}" class="pagination-next">Next page</a>
+        <ul class="pagination-list">
+            <li><a href="/results/{{current}}?q={{query}}&page_number=1" class="pagination-link" aria-label="Goto page 1">1</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li><a href="/results/{{current}}?q={{query}}&page_number={{page_number}}" class="pagination-link is-current" aria-label="Goto page {{page_number}}">{{page_number}}</a></li>
+            <li><a href="/results/{{current}}?q={{query}}&page_number={{page_number + 1}}" class="pagination-link" aria-label="Page {{page_number + 1}}" aria-current="page"> {{page_number + 1}}</a></li>
+            <li><a href="/results/{{current}}?q={{query}}&page_number={{page_number + 2}}" class="pagination-link" aria-label="Goto page {{page_number + 2}}">{{page_number + 2}}</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li><a href="/results/{{current}}?q={{query}}&page_number={{page_number + 8}}" class="pagination-link" aria-label="Goto page {{page_number + 8}}">{{page_number + 8}}</a></li>
+
+      {% endif %}
+
+      {% if page_number > 2 %}
+        <a href="/results/{{current}}?q={{query}}&page_number={{page_number - 1}}" class="pagination-previous">Previous</a>
+        <a href="/results/{{current}}?q={{query}}&page_number={{page_number + 1}}" class="pagination-next">Next page</a>
+        <ul class="pagination-list">
+            <li><a href="/results/{{current}}?q={{query}}&page_number=1" class="pagination-link" aria-label="Goto page 1">1</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li><a href="/results/{{current}}?q={{query}}&page_number={{page_number - 1}}" class="pagination-link" aria-label="Goto page {{page_number - 1}}">{{page_number - 1}}</a></li>
+            <li><a href="/results/{{current}}?q={{query}}&page_number={{page_number}}" class="pagination-link is-current" aria-label="Page {{page_number}}" aria-current="page"> {{page_number}}</a></li>
+            <li><a href="/results/{{current}}?q={{query}}&page_number={{page_number + 1}}" class="pagination-link" aria-label="Goto page {{page_number + 1}}">{{page_number + 1}}</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li><a href="/results/{{current}}?q={{query}}&page_number={{page_number + 8}}" class="pagination-link" aria-label="Goto page {{page_number + 8}}">{{page_number + 8}}</a></li>
+
+      {% endif %}
+
+      </ul>
+    </nav>
+        <input type="text" hidden value="{{query}}">
+    </form>
+    </div>
+{% endif %}
+
+

@@ -1,0 +1,602 @@
+/* Stopwatch CSS -----------------------------*/
+input[type='radio'] {
+    display: none;
+}
+
+#id-start:checked ~ .cl-second-hand {
+    animation-play-state: running;
+}
+
+#id-stop:checked ~ .cl-second-hand {
+    animation-play-state: paused;
+}
+
+#id-reset:checked ~ .cl-second-hand {
+    animation: none;
+}
+
+#id-start:checked ~ .cl-minute-hand {
+    animation-play-state: running;
+}
+
+#id-stop:checked ~ .cl-minute-hand {
+    animation-play-state: paused;
+}
+
+#id-reset:checked ~ .cl-minute-hand {
+    animation: none;
+}
+
+.cl-stopwatch-digital {
+    position: absolute;
+    top: 95px;
+    left: 32px;
+}
+
+.cl-clock1 {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    background: #f7f3d9;
+    border: 10px solid #353535;
+    border-radius: 50%;
+    margin: 50px auto 10px auto;
+}
+
+.cl-btn {
+    position: absolute;
+    top: -22.5px;
+    left: 50%;
+    margin-left: -7px;
+    width: 14px;
+    height: 13px;
+    background: #5a5d5a;
+    z-index: 19;
+    transform-origin: 50% 97px;
+}
+
+.cl-right {
+    top: -17.5px;
+    height: 8px;
+    transform-origin: 50% 92px;
+    transform: rotate(45deg);
+}
+
+.cl-left {
+    top: -17.5px;
+    height: 8px;
+    transform-origin: 50% 92px;
+    transform: rotate(-45deg);
+}
+
+.cl-side {
+    top: -17.5px;
+    height: 8px;
+    transform-origin: 50% 92px;
+    transform: rotate(-90deg);
+}
+
+.cl-ring {
+    display: block;
+    position: absolute;
+    top: -54px;
+    left: 50%;
+    margin-left: -22px;
+    width: 44px;
+    height: 44px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: 3px solid #5a5d5a;
+}
+
+.cl-red {
+    top: -37px;
+    margin-left: -11px;
+    width: 22px;
+    height: 18px;
+    background: #b45a4d;
+    border-radius: 2.5px;
+    cursor: pointer;
+    transition: all .1s;
+    z-index: 20;
+}
+
+.cl-blue,
+.cl-black {
+    top: -30px;
+    margin-left: -10.5px;
+    width: 21px;
+    height: 14px;
+    background: #259399;
+    border-radius: 2.5px;
+    z-index: 20;
+    cursor: pointer;
+    transition: all .1s;
+    transform-origin: 50% 105px;
+}
+
+.cl-yellow {
+    top: -23px;
+    margin-left: -4px;
+    width: 21px;
+    height: 14px;
+    background: #ffaf24;
+    border-radius: 2.5px;
+    z-index: 20;
+    cursor: pointer;
+    transition: all .1s;
+    transform-origin: 15% 105px;
+}
+
+.cl-black {
+    background: #353535;
+}
+
+.cl-red:active {
+    transform: translateY(5px);
+}
+
+.cl-blue:active {
+    transform: rotate(45deg) translateY(5px);
+}
+
+.cl-black:active {
+    transform: rotate(-45deg) translateY(5px);
+}
+
+.cl-yellow:active {
+    transform: rotate(-90deg) translateY(5px);
+}
+
+.cl-axis {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 1px;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 10px;
+    height: 10px;
+    background: #353535;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.cl-axis.cl-tiny {
+    width: 4px;
+    height: 4px;
+    background: #f7f3d9;
+    z-index: 11;
+}
+
+.cl-second-hand {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 49.75%;
+    margin-left: -.5px;
+    width: 3px;
+    height: 80px;
+    background: #b45a4d;
+    border-radius: 1.5px;
+    z-index: 2;
+    transform-origin: center 65px;
+    transform: rotate(0);
+    animation-name: secunda;
+    animation-duration: 60s;
+    animation-delay: initial;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-play-state: paused;
+}
+
+.cl-minute-hand {
+    display: block;
+    position: absolute;
+    top: 30px;
+    left: 49.5%;
+    margin-left: -1.5px;
+    width: 5px;
+    height: 60px;
+    background: #0e301a;
+    border-radius: 2.5px;
+    z-index: 1;
+    transform-origin: center 45px;
+    transform: rotate(0);
+    animation-name: secunda;
+    animation-duration: 3600s;
+    animation-delay: initial;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-play-state: paused;
+}
+
+.cl-clock-face {
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    margin-left: -1px;
+    width: 2px;
+    height: 9px;
+    background: #353535;
+    border-radius: 1px;
+    z-index: 1;
+    transform-origin: 50% 70px;
+}
+
+.cl-seconds {
+    width: 1px;
+    height: 4px;
+}
+
+.cl-second-1 {
+    transform: rotate(6deg);
+}
+
+.cl-second-2 {
+    transform: rotate(12deg);
+}
+
+.cl-second-3 {
+    transform: rotate(18deg);
+}
+
+.cl-second-4 {
+    transform: rotate(24deg);
+}
+
+.cl-one {
+    transform: rotate(30deg);
+}
+
+.cl-second-6 {
+    transform: rotate(36deg);
+}
+
+.cl-second-7 {
+    transform: rotate(42deg);
+}
+
+.cl-second-8 {
+    transform: rotate(48deg);
+}
+
+.cl-second-9 {
+    transform: rotate(54deg);
+}
+
+.cl-two {
+    transform: rotate(60deg);
+}
+
+.cl-second-11 {
+    transform: rotate(66deg);
+}
+
+.cl-second-12 {
+    transform: rotate(72deg);
+}
+
+.cl-second-13 {
+    transform: rotate(78deg);
+}
+
+.cl-second-14 {
+    transform: rotate(84deg);
+}
+
+.cl-three {
+    transform: rotate(90deg);
+}
+
+.cl-second-16 {
+    transform: rotate(96deg);
+}
+
+.cl-second-17 {
+    transform: rotate(102deg);
+}
+
+.cl-second-18 {
+    transform: rotate(108deg);
+}
+
+.cl-second-19 {
+    transform: rotate(114deg);
+}
+
+.cl-four {
+    transform: rotate(120deg);
+}
+
+.cl-second-21 {
+    transform: rotate(126deg);
+}
+
+.cl-second-22 {
+    transform: rotate(132deg);
+}
+
+.cl-second-23 {
+    transform: rotate(138deg);
+}
+
+.cl-second-24 {
+    transform: rotate(144deg);
+}
+
+.cl-five {
+    transform: rotate(150deg);
+}
+
+.cl-second-26 {
+    transform: rotate(156deg);
+}
+
+.cl-second-27 {
+    transform: rotate(162deg);
+}
+
+.cl-second-28 {
+    transform: rotate(168deg);
+}
+
+.cl-second-29 {
+    transform: rotate(174deg);
+}
+
+.cl-six {
+    transform: rotate(180deg);
+}
+
+.cl-second-31 {
+    transform: rotate(186deg);
+}
+
+.cl-second-32 {
+    transform: rotate(192deg);
+}
+
+.cl-second-33 {
+    transform: rotate(198deg);
+}
+
+.cl-second-34 {
+    transform: rotate(204deg);
+}
+
+.cl-seven {
+    transform: rotate(210deg);
+}
+
+.cl-second-36 {
+    transform: rotate(216deg);
+}
+
+.cl-second-37 {
+    transform: rotate(222deg);
+}
+
+.cl-second-38 {
+    transform: rotate(228deg);
+}
+
+.cl-second-39 {
+    transform: rotate(234deg);
+}
+
+.cl-eight {
+    transform: rotate(240deg);
+}
+
+.cl-second-41 {
+    transform: rotate(246deg);
+}
+
+.cl-second-42 {
+    transform: rotate(252deg);
+}
+
+.cl-second-43 {
+    transform: rotate(258deg);
+}
+
+.cl-second-44 {
+    transform: rotate(264deg);
+}
+
+.cl-nine {
+    transform: rotate(270deg);
+}
+
+.cl-second-46 {
+    transform: rotate(276deg);
+}
+
+.cl-second-47 {
+    transform: rotate(282deg);
+}
+
+.cl-second-48 {
+    transform: rotate(288deg);
+}
+
+.cl-second-49 {
+    transform: rotate(294deg);
+}
+
+.cl-ten {
+    transform: rotate(300deg);
+}
+
+.cl-second-51 {
+    transform: rotate(306deg);
+}
+
+.cl-second-52 {
+    transform: rotate(312deg);
+}
+
+.cl-second-53 {
+    transform: rotate(318deg);
+}
+
+.cl-second-54 {
+    transform: rotate(324deg);
+}
+
+.cl-eleven {
+    transform: rotate(330deg);
+}
+
+.cl-second-56 {
+    transform: rotate(336deg);
+}
+
+.cl-second-57 {
+    transform: rotate(342deg);
+}
+
+.cl-second-58 {
+    transform: rotate(348deg);
+}
+
+.cl-second-59 {
+    transform: rotate(354deg);
+}
+
+/* ANIMATION */
+
+@keyframes secunda {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Timer CSS -----------------------------*/
+
+button[data-setter] {
+    outline: none;
+    background: transparent;
+    border: none;
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-size: 18px;
+    width: 25px;
+    height: 30px;
+    color: #b45a4d;
+    cursor: pointer;
+}
+
+button[data-setter]:hover {
+    opacity: 0.5;
+}
+
+.cl-container {
+    position: relative;
+    top: 30px;
+    width: 200px;
+    margin: 0 auto;
+}
+
+.cl-setters {
+    position: absolute;
+    left: 46px;
+    top: 50px;
+}
+
+.cl-minutes-set {
+    float: left;
+    margin-right: 5px;
+}
+
+.cl-seconds-set {
+    float: right;
+}
+
+.cl-controlls {
+    position: absolute;
+    left: 50px;
+    top: 69px;
+    text-align: center;
+}
+
+.cl-display-remain-time {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    font-size: 30px;
+    color: #b45a4d;
+}
+
+#id-pause {
+    outline: none;
+    background: transparent;
+    border: none;
+    margin-top: 7px;
+    width: 33px;
+    height: 33px;
+    position: relative;
+}
+
+.cl-play::before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 11px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 15px solid #b45a4d;
+}
+
+.cl-pause::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 8px;
+    width: 10px;
+    height: 20px;
+    background-color: transparent;
+    border-radius: 1px;
+    border: 3px solid #b45a4d;
+    border-top: none;
+    border-bottom: none;
+}
+
+#id-pause:hover {
+    opacity: 0.8;
+}
+
+.cl-base {
+    fill: none;
+    stroke: #b6b6b6;
+    stroke-width: 3px
+}
+
+.cl-progress {
+    fill: none;
+    stroke: #b45a4d;
+    stroke-width: 3px;
+    transition: stroke-dashoffset 0.7s;
+}
+
+.cl-pointer {
+    fill: #ffffff;
+    stroke: #b45a4d;
+    stroke-width: 2px;
+}
+
+#id-pointer {
+    transition: transform 0.7s;
+}
+
+h1 {
+    margin-top: 100px;
+    text-align: center;
+}
+

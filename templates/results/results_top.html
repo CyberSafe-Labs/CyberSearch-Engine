@@ -1,0 +1,36 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Infinity Results - {{ query }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="search" type="application/opensearchdescription+xml" title="Infinity Search"
+          href="https://www.infinitysearchsolo.com/opensearch.xml">
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <style> a.toplink {
+        color: black;
+    } </style>
+    <link rel="stylesheet" href="/static/css/bulma.min.css">
+    <link rel="stylesheet" href="/static/css/bulma_light.css">
+    <link rel="stylesheet" href="/static/css/bulma_dark.css">
+    <link rel="stylesheet" href="/static/css/bulma_nature.css">
+    <link rel="stylesheet" href="/static/css/bulma_space.css">
+    <script src="/static/js/js-cookie.js"></script>
+    <script src="/static/js/theme_top.js"></script>
+    <link rel="stylesheet" href="/static/css/results.css">
+    <script src="/static/js/masonry.min.js"></script>
+    <script src="/static/js/sortable.min.js"></script>
+    <link href="/static/fonts/results_fonts.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/is/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/is/favicon_32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/is/favicon_16.png">
+    <link rel="manifest" href="/static/images/is/site.webmanifest">
+    <link rel="mask-icon" href="/static/images/is/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    {% if current != 'images' %}
+        <style>
+            .card {
+                word-break: break-word;
+            }
+        </style>
+    {% endif %}
+</head>

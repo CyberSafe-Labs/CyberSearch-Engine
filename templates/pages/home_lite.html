@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CyberSearch - Home</title>
+    <meta name="description" content="Search with privacy and efficiency.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="search" type="application/opensearchdescription+xml" title="CyberSearch"
+          href="https://cybersearch.herokuapp.com/opensearch.xml">
+    <link rel="stylesheet" href="/static/css/bulma.min.css">
+    <link rel="stylesheet" href="/static/css/bulma_dark.css">
+    <link rel="stylesheet" href="/static/css/bulma_nature.css">
+    <link rel="stylesheet" href="/static/css/bulma_space.css">
+    <link rel="stylesheet" href="/static/css/home.css">
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <script src="/static/js/js-cookie.js"></script>
+    <script src="/static/js/theme_top.js"></script>
+</head>
+<body class="Site">
+<div id="page_style" class="Site-content page__style page__description">
+    <div style="margin-top: 12%"></div>
+    <div style="text-align: center;">
+        <a href="/" id="black_logo">
+            <img src="/static/images/is/logo_text_color.png" width="20%" style="min-width: 140px;">
+        </a>
+        <a href="/" id="white_logo" hidden>
+            <img src="/static/images/is/logo_text_white.png" width="20%" style="min-width: 140px;">
+        </a>
+    </div>
+    <div class="content column is-half is-offset-one-quarter"
+         style="margin-top: 30px; padding-bottom: 0; margin-bottom: 20px;">
+        <form action="/results" method="post" id="input_form" autocomplete="off">
+            <div class="field has-addons">
+                <div class="control is-expanded">
+                    <input id="search_query" class="input is-medium" type="search" oninput="hide_or_show_tabs();" placeholder="Search for anything on the web"
+                           name="Search"
+                           autofocus="autofocus" onfocus="this.select()" required>
+                </div>
+                <div class="control">
+                    <button class="button input is-medium search-button-icon"><img src="/static/images/fa/search.svg" style="height: 22px; width: 22px;">
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="column is-half is-offset-one-quarter" style="padding-top: 0; margin-top: 0">
+        <div id="tab_area" class="tabs is-centered">
+            <ul>
+                <li class="is-active search_tab" onclick="switch_tab(this, '');"><a>Web</a></li>
+                <li class="search_tab" onclick="switch_tab(this, '/images')"><a>Images</a></li>
+                <li class="search_tab" onclick="switch_tab(this, '/videos')"><a>Videos</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="/static/js/home.js"></script>
+<script>
+    $('#tab_area').hide();
+    function hide_or_show_tabs() {
+        console.log(document.getElementById('search_query').value);
+        if (document.getElementById('search_query').value === '') {
+            $('#tab_area').hide();
+        }
+        else {
+            $('#tab_area').show();
+        }
+    }
+</script>
+</body>
+</html>

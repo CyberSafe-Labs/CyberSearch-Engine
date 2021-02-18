@@ -1,0 +1,74 @@
+<div class="card" id="id-color-widget" style="height: 11rem">
+    <div class="card-content">
+        <div class="content">
+            <div class="columns">
+                <div class="column is-two-fifths">
+                    <div id="id-color-picker" style="height:10rem; width: 20rem;
+                            background-color: #0e72b4; border-radius: 5px; grid-row: 1 / span 2; position: absolute;">
+                        <img src="../../../static/images/misc/saturation_value_gradient.png" style="user-drag: none;
+                            user-select: none; -moz-user-select: none; -webkit-user-drag: none;
+                            -webkit-user-select: none; -ms-user-select: none; border-radius: 5px; height: 10rem;
+                            width: 20rem;">
+                        <div id="id-color-marker" style="height:5px; width: 5px; border-color:black;
+                                 border-width: 1px; border-style: solid; outline: white 1px solid; position: absolute;
+                                 top: 5rem; left: 10rem;"></div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div style="display: grid; grid-template-columns: 4rem 5rem 5rem 5rem;">
+                        <div id="id-color-slider" style="border-radius: 5px; height: 7.5rem; width: 3rem;
+                        grid-column: 1 / span 1; grid-row: 1 / span 4;">
+                            <img src="../../../static/images/misc/hue_gradient.png" style="border-radius: 5px;
+                            height: 7.5rem; width: 3rem;">
+                            <div id="id-color-slider-marker" style="height:10px; width: 3rem; border-color:black;
+                            border-width: 2px; border-style: solid; border-radius: 5px; position: absolute;
+                            top: 4.4rem;"></div>
+                        </div>
+                        <div id="id-color-sample" style="height:2rem; width: 3rem;
+                        background-color: #0e72b4; border-radius: 5px; grid-column: 1 / span 1; grid-row: 4 / span 1;
+                        margin-top: 1.9rem;"></div>
+
+                        <div style="grid-row: 1 / span 3;">
+                            <div style="display: grid; grid-template-columns: 1rem 3rem; grid-gap: .2rem;">
+                                <label for="id-rgb-r" style="display: flex; align-items: center;">R:</label>
+                                <input class="input is-small" type="text" id="id-rgb-r" style="width: 3rem;">
+                                <label for="id-rgb-g" style="display: flex; align-items: center;">G:</label>
+                                <input class="input is-small" type="text" id="id-rgb-g" style="width: 3rem;">
+                                <label for="id-rgb-b" style="display: flex; align-items: center;">B:</label>
+                                <input class="input is-small" type="text" id="id-rgb-b" style="width: 3rem;">
+                            </div>
+                        </div>
+                        <div style="grid-row: 1 / span 3;">
+                            <div style="display: grid; grid-template-columns: 1rem 3rem; grid-gap: .2rem;">
+                                <label for="id-hsv-h" style="display: flex; align-items: center;">H:</label>
+                                <input class="input is-small" type="text" id="id-hsv-h" style="width: 3rem;">
+                                <label for="id-hsv-s" style="display: flex; align-items: center;">S:</label>
+                                <input class="input is-small" type="text" id="id-hsv-s" style="width: 3rem;">
+                                <label for="id-hsv-v" style="display: flex; align-items: center;">V:</label>
+                                <input class="input is-small" type="text" id="id-hsv-v" style="width: 3rem;">
+                            </div>
+                        </div>
+                        <div style="grid-row: 1 / span 4;">
+                            <div style="display: grid; grid-template-columns: 1rem 3rem; grid-gap: .2rem;">
+                                <label for="id-cmyk-c" style="display: flex; align-items: center;">C:</label>
+                                <input class="input is-small" type="text" id="id-cmyk-c" style="width: 3rem;">
+                                <label for="id-cmyk-m" style="display: flex; align-items: center;">M:</label>
+                                <input class="input is-small" type="text" id="id-cmyk-m" style="width: 3rem;">
+                                <label for="id-cmyk-y" style="display: flex; align-items: center;">Y:</label>
+                                <input class="input is-small" type="text" id="id-cmyk-y" style="width: 3rem;">
+                                <label for="id-cmyk-k" style="display: flex; align-items: center;">K:</label>
+                                <input class="input is-small" type="text" id="id-cmyk-k" style="width: 3rem;">
+                            </div>
+                        </div>
+                        <div style="grid-row: 4 / span 1; grid-column: 2 / span 2;">
+                            <div style="display: grid; grid-template-columns: 1rem 5rem; margin-top: 1rem;">
+                                <label for="id-hex" style="display: flex; align-items: center;">#</label>
+                                <input class="input is-small" type="text" id="id-hex" style="width: 5rem;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

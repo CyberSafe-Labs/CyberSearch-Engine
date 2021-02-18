@@ -1,0 +1,83 @@
+{% extends 'pages/article_layout.html' %}
+{% block article %}
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <script src="/static/js/js-cookie.js"></script>
+    <script src="/static/js/theme_top.js"></script>
+    <script src="/static/js/codemirror.js"></script>
+    <link rel="stylesheet" href="/static/css/codemirror.css">
+    <script src="/static/js/css.js"></script>
+    <script src="/static/js/theme_bottom.js" defer></script>
+
+    <div class="is-half is-offset-one-quarter">
+        <h1 class="title">Advanced Settings</h1>
+        <hr class="hr">
+        <div class="columns" style="margin-bottom: 0;">
+            <div class="column is-narrow" style="padding-bottom: 0;">
+                <h3 class="subtitle">Custom css</h3>
+            </div>
+            <div class="column" style="padding-bottom: 0;">
+                <div id="external-info-button" style="float: right;">
+                    <div id="whats-this" class="dropdown is-hoverable is-right"
+                         style="float: right;">
+                        <div class="dropdown-trigger">
+                            <button class="button is-small" aria-haspopup="true" aria-controls="dropdown-menu">
+                                <span class="icon is-small"><img src="/static/images/fa/question-circle.svg" style="width: 16px; height: 16px;"></span>
+                            </button>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                            <div class="dropdown-content">
+                                <div class="dropdown-item" style="font-size: x-small">
+                                    This input will allow you to completely customize your searching experience through
+                                    the use of CSS! When you hit apply we save what you entered below on your browser so
+                                    we will <strong>never</strong> even have access to it. When you visit our site your
+                                    css will be loaded up and voilà! If you ever want to undo or make more changes
+                                    simply come back to this page.
+                                    <br><br>
+                                    To learn more about how to use css, visit
+                                    <a href="https://www.w3schools.com/Css/css_intro.asp">w3schools.com</a> or
+                                    <a href="https://www.geeksforgeeks.org/css-tutorials/?ref=lbp">
+                                        geeksforgeeks.org</a>.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <textarea class="textarea" id="custom-css-input" placeholder="Enter css here ..."></textarea>
+            </div>
+        </div>
+        <div style="text-align: right">
+            <button class="button is-medium is-primary is-outlined" onclick="setCustomCSS();loadCustomCSStoPage();">
+                Apply
+            </button>
+        </div>
+        <hr class="hr" style="margin-top: 6em;">
+
+        <h3 class="subtitle">Blacklisted Domains</h3>
+        Please put each domain on its own line. Every domain on this list will not show up in your search results. <br>
+
+        <div class="field">
+            <div class="control">
+                <textarea id="id-blacklist-textarea" class="textarea" placeholder="pinterest.com"></textarea>
+            </div>
+        </div>
+        <div style="text-align: right">
+            <button class="button is-medium is-primary is-outlined" onclick="setBlacklistedSites();">
+                Apply
+            </button>
+        </div>
+
+
+        <h3 class="subtitle">More settings coming soon</h3>
+        Have a suggestion for a setting? You can let us know <a href="/feedback">here</a>!
+    </div>
+    <script>
+        loadCustomCSStoInput();
+        loadBlacklistedSites();
+    </script>
+
+{% endblock %}

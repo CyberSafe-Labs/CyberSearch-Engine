@@ -1,0 +1,79 @@
+{% if current == 'web' %}
+    <div class="column" style="padding-top: 0">
+
+        {% if instant_extracts|length == 0 and bing_results|length == 0 %}
+            <div class="card">
+                <div class="card-content">
+                    <div class="content">
+                        We couldn't find any results for <b>"{{query}}"</b>.
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% include 'results/results_integrations.html' %}
+
+        {% if removed_links > 0 %}
+        <div class="card">
+            <div class="card-content">
+                <div class="content">
+                    {{removed_links}} links were removed from these results due to your <a
+                        href="/advanced_settings#id-blacklist-textarea">blacklist</a>.
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+
+        {% for info in instant_extracts %}
+            <div class="card">
+                <div class="card-content">
+                    <div class="content">
+                        <div class="columns is-mobile">
+                            <div class="column is is-one-quarter">
+                                <a href="{{ info.page_url }}" class="toplink" rel="noreferrer noopener">
+                                    <span> <b>{{ info.title }}</b> </span> </a>
+                                <br style="display: block; content: ''; margin-top: 10px;">
+                                <a href="{{ info.page_url }}" rel="noreferrer noopener"> <img
+                                        src=/proxy/image?url={{ info.thumbnail_url }}
+                                        style="max-height: 10em;"> </a>
+                            </div>
+                            <div class="column">
+                                <a href="{{ info.page_url }}" class="toplink" rel="noreferrer noopener">
+                                    <b> {{ info.description }} </b></a>
+                                <br style="display: block; content: ''; margin-top: 10px;">
+
+                                <div id="style-1" style="overflow: auto; height: 10em">
+                                    <span class="desc">
+                                        {{ info.extract }} <a href="{{ info.page_url }}" rel="noreferrer noopener">Wikipedia</a>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    {% for link in bing_results %}
+        <div class="card" id="main_{{ loop.index0 }}">
+            <div class="card-content">
+                <div class="content">
+                    <a href="{{ link.url }}" class="toplink" rel="noreferrer noopener">
+                        <span> <b>{{ link.title }}</b> </span> </a>
+                    <br>
+                    <a href="{{ link.url }}" class="bottom-url" rel="noreferrer noopener"><img class="cl-site-icons" src="{{link.favicon}}" height="16px" width="16px" style="vertical-align: middle;" onerror="imgError(this);"> {{ link.url }}</a>
+                    <br>
+                    <div class="desc">{{ link.content }}</div>
+                </div>
+            </div>
+        </div>
+        {% if loop.index0 == 3 %}
+            <div id="images_main"></div>
+        {% endif %}
+    {% endfor %}
+
+    </div>
+
+{% endif %}

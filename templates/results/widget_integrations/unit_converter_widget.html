@@ -1,0 +1,47 @@
+<div class="card" id="unit-conversion">
+    <div class="card-content">
+        <div class="content">
+            <a></a>
+            <div class="select is-rounded">
+                <select id="conversion-categories" onchange="setAvailableConversionUnits(); calculateConversion(true);">
+                    <option value="angle">Angle</option>
+                    <option value="area">Area</option>
+                    <option value="datatransferrate">Data Transfer Rate</option>
+                    <option value="digitalstorage">Digital Storage</option>
+                    <option value="energy">Energy</option>
+                    <option value="force">Force</option>
+                    <option value="frequency">Frequency</option>
+                    <option value="length">Length</option>
+                    <option value="mass">Mass</option>
+                    <option value="power">Power</option>
+                    <option value="pressure">Pressure</option>
+                    <option value="speed">Speed</option>
+                    <option value="temperature">Temperature</option>
+                    <option value="time">Time</option>
+                    <option value="volume">Volume</option>
+                </select>
+            </div>
+            <div class="columns is-mobile" style="margin-top: .25rem;">
+                <div class="column is-5">
+                    <input class="input is-large" id="left-conversion-input" onchange="calculateConversion(true);"
+                           oninput="calculateConversion(true);" autocomplete="new-password" onclick="this.select()">
+                    <div class="select is-rounded is-small" style="margin-top: .25rem">
+                        <select id="left-conversion-unit" onchange="calculateConversion(true);">
+                        </select>
+                    </div>
+                </div>
+                <div class="column is-narrow">
+                    <img src="/static/images/fa/equals.svg" style="height: 16px; width: 16px; text-align: center; margin-top: 1.25rem;">
+                </div>
+                <div class="column is-6">
+                    <input class="input is-large" id="right-conversion-input" onchange="calculateConversion(false);"
+                           oninput="calculateConversion(false);" autocomplete="new-password" onclick="this.select()">
+                    <div class="select is-rounded is-small" style="margin-top: .25em" onload="selectUnits();">
+                        <select id="right-conversion-unit" onchange="calculateConversion(true);">
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

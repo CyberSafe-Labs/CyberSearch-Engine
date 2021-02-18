@@ -1,0 +1,69 @@
+{% if current == 'web' %}
+    <button class="button is-fullwidth is-small" id="advanced_search_button" style="margin-bottom: .5rem;">Advanced
+        Search
+    </button>
+{% endif %}
+
+{% if current == 'web'%}
+    <div id="advanced_search">
+        <nav class="panel" id="advanced_search_panel" style="margin-bottom: .5rem;" hidden>
+            <p class="panel-heading">
+                Advanced Search
+            </p>
+            <p class="panel-tabs" style="font-size: .75rem;">
+                <a class="is-active" id="advanced_search_words_tab">Words</a>
+                <a id="advanced_search_parameters_tab">Parameters</a>
+            </p>
+            {#-Word Group Tab-------------------------------------------------------------------------------------------------#}
+            <form action="/results" method="post">
+                <input name="Search" value="" hidden>
+                <input name="advanced" value="" hidden>
+
+                <div id="group-words">
+                    <a class="panel-block">
+                        <input class="input is-small is-fullwidth" id="group-words-0" type="text"
+                               placeholder="General query" name="all_these_words" value="{{ advanced_params.all_these_words }}">
+                    </a>
+                    <a class="panel-block">
+                        <input class="input is-small is-fullwidth" id="group-words-1" type="text"
+                               placeholder="This exact phrase" name="this_exact_phrase" value="{{ advanced_params.this_exact_phrase }}">
+                    </a>
+                    <a class="panel-block">
+                        <input class="input is-small is-fullwidth" id="group-words-2" type="text"
+                               placeholder="At least one of these words" name="any_of_these_words" value="{{ advanced_params.any_of_these_words }}">
+                    </a>
+                    <a class="panel-block">
+                        <input class="input is-small is-fullwidth" id="group-words-3" type="text"
+                               placeholder="Without any of these words" name="none_of_these_words" value="{{ advanced_params.none_of_these_words }}">
+                    </a>
+                </div>
+                {#-Parameters Group Tab-------------------------------------------------------------------------------------------#}
+                <div id="group-parameters" style="display: none;">
+                    <a class="panel-block">
+                        <input class="input is-small is-fullwidth" id="group-domains-0" type="text"
+                               placeholder="At this domain (e.g. google.com or .com)" name="domain" value="{{ advanced_params.domain }}">
+                    </a>
+                    <div class="panel-block">
+                        <label for="filetype" style="padding-right: 5px;">Filetype: </label>
+                        <select class="select" name="filetype" id="filetype">
+                            <option value="">Any</option>
+                            <option value="html">HTML</option>
+                            <option value="pdf">PDF</option>
+                            <option value="doc">Word Document</option>
+                            <option value="ppt">Powerpoint</option>
+                            <option value="txt">Text</option>
+                        </select>
+                    </div>
+                    <a class="panel-block">
+                        <input class="input is-small is-fullwidth" id="group-domains-0" type="text"
+                               placeholder="Page number" name="page_number" value="{{ advanced_params.page_number }}">
+                    </a>
+                </div>
+                <div class="panel-block">
+                    <input type="submit" class="button is-small is-outlined is-fullwidth is-success" id="advanced_search"
+                           value="Search">
+                </div>
+            </form>
+        </nav>
+    </div>
+{% endif %}

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Infinity Results</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="search" type="application/opensearchdescription+xml" title="Infinity Search"
+          href="https://www.infinitysearchsolo.com/opensearch.xml">
+    <style> a.toplink {
+        color: black;
+    } </style>
+    <link rel="stylesheet" href="/static/css/bulma.min.css">
+    <link rel="stylesheet" href="/static/css/results.css">
+</head>
+
+<body>
+<div style="padding-top: 12px;"></div>
+<div class="column" style="padding-bottom: 0;">
+    <div class="columns">
+        <div class="column is-9">
+            <form action="/lite/results" method="post" id="input_form" autocomplete="off">
+                <div id="form_div">
+                    <a href="/">
+                        <a href="/" style="display: inline-block; float: left;" id="logo_result">
+                            <img id="logo_img_result"
+                                 src="/static/images/is/logo_circle_black.png" height="49px"
+                                 width="49px">
+                        </a>
+                    </a>
+                    <div id="input_text_area" class="field has-addons">
+                        <div class="control is-expanded" style="margin-left: 12px;">
+                            <input id="search_query" class="input is-medium" type="search" placeholder=""
+                                   value="{{ query }}" name="Search"
+                                   required>
+                        </div>
+                        <div class="control">
+                            <button class="button input is-medium search-button-icon"><img
+                                    src="/static/images/fa/search.svg" class="fa fa-search" style="height: 22px; width: 22px; min-width: .87em;"></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--<hr/>-->
+<div class="columns">
+    <div class="column is-9 results_column" style="padding-top: 1.2rem; padding-right: .5rem;">
+        <div id="results">
+            <div class="column" style="padding-top: 0">
+                {% for info in instant_extracts %}
+                <div class="card">
+                    <div class="card-content">
+                        <div class="content">
+                            <div class="columns is-mobile">
+                                <div class="column is is-one-quarter">
+                                    <a href="{{ info.page_url }}" class="toplink" rel="noreferrer noopener">
+                                        <span> <b>{{ info.title }}</b> </span> </a>
+                                    <br style="display: block; content: ''; margin-top: 10px;">
+                                    <a href="{{ info.page_url }}" rel="noreferrer noopener"> <img
+                                            src=/proxy/image?url={{ info.thumbnail_url }}
+                                            style="max-height: 10em;"> </a>
+                                </div>
+                                <div class="column">
+                                    <a href="{{ info.page_url }}" class="toplink" rel="noreferrer noopener">
+                                        <b> {{ info.description }} </b></a>
+                                    <br style="display: block; content: ''; margin-top: 10px;">
+
+                                    <div id="style-1" style="overflow: auto; height: 10em">
+                                    <span class="desc">
+                                        {{ info.extract }} <a href="{{ info.page_url }}" rel="noreferrer noopener">Wikipedia</a>
+                                    </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% for link in infinity_main_results %}
+                <div class="card">
+                    <div class="card-content">
+                        <div class="content">
+                            <a href="http://{{ link.url }}" class="toplink" rel="noreferrer noopener">
+                                <span> <b>{{ link.title }}</b> </span>
+                            </a>
+                            <br>
+                            <a href="http://{{ link.url }}" class="bottom-url"
+                               rel="noreferrer noopener">
+                                http://{{ link.url }}</a>
+                            <br>
+                            <div class="desc">{{ link.desc }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <div class="column">
+            <form action="/lite/results" method="post">
+                <nav class="pagination is-centered external-text" role="navigation" aria-label="pagination"
+                     style="margin-bottom: auto;">
+
+
+                    {% if page_number == 1 %}
+                    <a class="pagination-previous">Previous</a>
+                    <a href="/lite/results?q={{query}}&page_number={{page_number + 1}}" class="pagination-next">Next
+                        page</a>
+                    <ul class="pagination-list">
+                        <li><a class="pagination-link is-current" aria-label="Goto page 1">1</a></li>
+                        <li><span class="pagination-ellipsis">&hellip;</span></li>
+                        <li><a href="/lite/results?q={{query}}&page_number={{page_number + 1}}" class="pagination-link"
+                               aria-label="Goto page {{page_number + 1}}">{{page_number + 1}}</a></li>
+                        <li><a href="/lite/results?q={{query}}&page_number={{page_number + 2}}" class="pagination-link"
+                               aria-label="Page {{page_number + 2}}" aria-current="page"> {{page_number + 2}}</a></li>
+                        <li><a href="/lite/results?q={{query}}&page_number={{page_number + 3}}" class="pagination-link"
+                               aria-label="Goto page {{page_number + 3}}">{{page_number + 3}}</a></li>
+                        <li><span class="pagination-ellipsis">&hellip;</span></li>
+                        <li><a href="/lite/results?q={{query}}&page_number={{page_number + 8}}" class="pagination-link"
+                               aria-label="Goto page {{page_number + 8}}">{{page_number + 8}}</a></li>
+
+                        {% endif %}
+
+                        {% if page_number == 2 %}
+                        <a href="/lite/results?q={{query}}&page_number={{page_number - 1}}" class="pagination-previous">Previous</a>
+                        <a href="/lite/results?q={{query}}&page_number={{page_number + 1}}" class="pagination-next">Next
+                            page</a>
+                        <ul class="pagination-list">
+                            <li><a href="/lite/results?q={{query}}&page_number=1" class="pagination-link"
+                                   aria-label="Goto page 1">1</a></li>
+                            <li><span class="pagination-ellipsis">&hellip;</span></li>
+                            <li><a href="/lite/results?q={{query}}&page_number={{page_number}}"
+                                   class="pagination-link is-current" aria-label="Goto page {{page_number}}">{{page_number}}</a>
+                            </li>
+                            <li><a href="/lite/results?q={{query}}&page_number={{page_number + 1}}"
+                                   class="pagination-link" aria-label="Page {{page_number + 1}}" aria-current="page">
+                                {{page_number + 1}}</a></li>
+                            <li><a href="/lite/results?q={{query}}&page_number={{page_number + 2}}"
+                                   class="pagination-link" aria-label="Goto page {{page_number + 2}}">{{page_number +
+                                2}}</a></li>
+                            <li><span class="pagination-ellipsis">&hellip;</span></li>
+                            <li><a href="/lite/results?q={{query}}&page_number={{page_number + 8}}"
+                                   class="pagination-link" aria-label="Goto page {{page_number + 8}}">{{page_number +
+                                8}}</a></li>
+
+                            {% endif %}
+
+                            {% if page_number > 2 %}
+                            <a href="/lite/results?q={{query}}&page_number={{page_number - 1}}"
+                               class="pagination-previous">Previous</a>
+                            <a href="/lite/results?q={{query}}&page_number={{page_number + 1}}" class="pagination-next">Next
+                                page</a>
+                            <ul class="pagination-list">
+                                <li><a href="/lite/results?q={{query}}&page_number=1" class="pagination-link"
+                                       aria-label="Goto page 1">1</a></li>
+                                <li><span class="pagination-ellipsis">&hellip;</span></li>
+                                <li><a href="/lite/results?q={{query}}&page_number={{page_number - 1}}"
+                                       class="pagination-link" aria-label="Goto page {{page_number - 1}}">{{page_number
+                                    - 1}}</a></li>
+                                <li><a href="/lite/results?q={{query}}&page_number={{page_number}}"
+                                       class="pagination-link is-current" aria-label="Page {{page_number}}"
+                                       aria-current="page"> {{page_number}}</a></li>
+                                <li><a href="/lite/results?q={{query}}&page_number={{page_number + 1}}"
+                                       class="pagination-link" aria-label="Goto page {{page_number + 1}}">{{page_number
+                                    + 1}}</a></li>
+                                <li><span class="pagination-ellipsis">&hellip;</span></li>
+                                <li><a href="/lite/results?q={{query}}&page_number={{page_number + 8}}"
+                                       class="pagination-link" aria-label="Goto page {{page_number + 8}}">{{page_number
+                                    + 8}}</a></li>
+                                {% endif %}
+
+                            </ul>
+                </nav>
+                <input type="text" hidden value="{{query}}">
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="column is-9 results_column" style="padding-right: .5rem; padding-top: 0; padding-bottom: 0">
+<div class="footer footer-settings" style="text-align: center; padding-top: 0px; padding-bottom: 10px; background-color: white">
+    <div class="column is-half is-offset-one-quarter">
+        <div class="columns is-vcentered is-mobile">
+            <a class="column is-one-third" href="/about">
+                About
+            </a>
+            <a class="column is-one-third" href="/privacy">
+                Privacy
+            </a>
+            <a class="column is-one-third" href="/contact">
+                Contact
+            </a>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>

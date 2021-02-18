@@ -1,0 +1,139 @@
+<link rel="stylesheet" href="/static/css/stopwatch_timer_widget.css">
+<div class="card" id="id-stopwatch-timer-widget">
+    <div class="card-content">
+        <div class="content">
+            <div class="columns">
+                <div class="column">
+                    <div class="cl-clock1">
+                        <input type="radio" name="timer" id="id-start"/>
+                        <input type="radio" name="timer" id="id-stop"/>
+                        <input type="radio" name="timer" id="id-reset"/>
+                        <input type="radio" name="timer" id="id-lap"/>
+                        <!-- Top Button -->
+                        <label class="cl-btn cl-red" for="id-reset"></label>
+                        <span class="cl-ring"></span>
+                        <div class="cl-btn"></div>
+
+                        <!-- Right Button -->
+                        <label class="cl-btn cl-right cl-blue" for="id-start"></label>
+                        <div class="cl-btn cl-right"></div>
+
+                        <!-- Left Button -->
+                        <label class="cl-btn cl-left cl-black" for="id-stop"></label>
+                        <div class="cl-btn cl-left"></div>
+
+                        <!-- Side Button -->
+                        <label class="cl-btn cl-side cl-yellow" for="id-lap"></label>
+                        <div class="cl-btn cl-side"></div>
+
+                        <!-- Digital Read out -->
+                        <div class="subtitle cl-stopwatch-digital">
+                            00:00:00
+                        </div>
+                        <!-- Clock -->
+                        <span class="cl-axis cl-tiny"></span>
+                        <span class="cl-axis"></span>
+                        <span class="cl-second-hand"></span>
+                        <span class="cl-minute-hand"></span>
+                        <span class="cl-clock-face cl-twelve"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-1"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-2"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-3"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-4"></span>
+                        <span class="cl-clock-face cl-one"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-6"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-7"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-8"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-9"></span>
+                        <span class="cl-clock-face cl-two"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-11"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-12"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-13"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-14"></span>
+                        <span class="cl-clock-face cl-three"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-16"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-17"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-18"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-19"></span>
+                        <span class="cl-clock-face cl-four"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-21"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-22"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-23"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-24"></span>
+                        <span class="cl-clock-face cl-five"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-26"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-27"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-28"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-29"></span>
+                        <span class="cl-clock-face cl-six"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-31"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-32"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-33"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-34"></span>
+                        <span class="cl-clock-face cl-seven"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-36"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-37"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-38"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-39"></span>
+                        <span class="cl-clock-face cl-eight"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-41"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-42"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-43"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-44"></span>
+                        <span class="cl-clock-face cl-nine"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-46"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-47"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-48"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-49"></span>
+                        <span class="cl-clock-face cl-ten"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-51"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-52"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-53"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-54"></span>
+                        <span class="cl-clock-face cl-eleven"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-56"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-57"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-58"></span>
+                        <span class="cl-clock-face cl-seconds cl-second-59"></span>
+                    </div>
+                </div>
+                <div class="column is-one-fifth">
+                    <div class="list">
+                        <ul id="id-lap-list"></ul>
+                    </div>
+                </div>
+                <div class="column is-two-fifths">
+                    <div class="cl-container">
+                        <div class="cl-setters">
+                            <div class="cl-minutes-set">
+                                <button data-setter="minutes-plus">+</button>
+                                <button data-setter="minutes-minus">-</button>
+                            </div>
+                            <div class="cl-seconds-set">
+                                <button data-setter="seconds-plus">+</button>
+                                <button data-setter="seconds-minus">-</button>
+                            </div>
+                        </div>
+                        <div class="circle">
+                            <svg width="200" viewBox="0 0 220 220">
+                                <g transform="translate(110,110)">
+                                    <circle r="100" class="cl-base"></circle>
+                                    <g transform="rotate(-90)">
+                                        <circle r="100" class="cl-progress"></circle>
+                                        <g id="id-pointer">
+                                            <circle cx="100" cy="0" r="8" class="cl-pointer"></circle>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="cl-controlls">
+                            <div class="cl-display-remain-time">00:30:00</div>
+                            <button class="cl-play" id="id-pause"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

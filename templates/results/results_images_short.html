@@ -1,0 +1,30 @@
+{% if image_results_short|length != 0 %}
+<div class="card" style="word-break: normal">
+    <div class="card-content">
+        <div class="content">
+            <a href="/results/images?q={{query}}" class="toplink" rel="noreferrer noopener">
+                <span> Images for <b>"{{ query }}"</b> </span> </a>
+            <br>
+            <div class="grid">
+                <div class="grid-sizer"></div>
+                {% for link in image_results_short %}
+                <div class="grid-item">
+                    <div class="grid-image">
+                        <a href="{{ link.img_src }}" rel="noreferrer">
+                            <img src="/proxy/image?url={{ link.thumbnail_src }}"
+                                 style="border-radius: 5px;"
+                                 onload="$('.grid').masonry({itemSelector: '.grid-item', percentPosition: true, columnWidth: '.grid-sizer'});">
+                        </a>
+                        <div class="overlay bounce">
+                    <span><div class="text"><a href="{{ link.url }}"
+                                               rel="noreferrer"> {{ link.source }}</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</div>
+{% endif %}

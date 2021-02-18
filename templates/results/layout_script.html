@@ -1,0 +1,375 @@
+<script>
+    function load_results(query, page_number) {
+        var path = String(window.location.pathname.split('/').pop());
+        if (path.startsWith('results')) {
+            window.history.pushState({}, 'Infinity Results - ' + query, '/' + path + '?q=' + query);
+        } else {
+            window.history.pushState({}, 'Infinity Results - ' + query, '/results/' + path + '?q=' + query);
+        }
+        document.title = 'Infinity Results - ' + query;
+        document.getElementById('results').innerHTML = '';
+        $('#loading_bar').show();
+        $('.footer').hide();
+
+        $.ajax({
+            type: 'POST',
+            url: '{{url}}',
+            xhrFields: { withCredentials: true},
+            data: {
+                'Search': query,
+                'page_number': page_number,
+                {% if advanced_search_query == True  %}
+                'advanced_search_query': "{{ advanced_search_query }}"
+                    {% if current == 'images' %}
+                        'advanced_images': {{ advanced_params }}
+                    {% endif %}
+                {% endif %}
+            },
+            success: function (msg) {
+                $('#loading_bar').hide();
+                document.getElementById('results').innerHTML = msg;
+                $('.footer').show();
+                setSiteIconsAttr();
+
+                {%  if current == 'web' and advanced_search_query != True %}
+                    if (page_number === '1') {
+                        $('#images_main').html($('#images_hidden').html());
+                        $('#images_main').show();
+                    } else {
+                        $('#images_main').hide();
+                    }
+                {% endif %}
+
+                initializeFontAttr();
+                initializeCondenseAttr();
+                initializeNewTabAttr();
+                initializeThemeAttr();
+                $("#unit-conversion").ready(function () {
+                    selectUnits();
+                });
+                colorPickerLoaded();
+                loadRandNumber();
+                stopwatchload();
+
+                // init Masonry
+                $('.grid').masonry({
+                    itemSelector: '.grid-item',
+                    percentPosition: true,
+                    columnWidth: '.grid-sizer'
+                });
+
+            },
+            error: function () {
+                $('#loading_bar').hide();
+
+                var error_msg = ```
+                    <div class="column" style="padding-top: 0">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="content">
+                                    There was an error loading your results. <a href="/contact">contact us</a>  if this
+                                     error persists.
+                                </div>
+                          </div>
+                        </div>
+                    </div>
+                ```;
+                document.getElementById('results').innerHTML = error_msg;
+                $('.footer').show();
+            }
+        });
+    }
+
+    function get_images(query) {
+        $.ajax({
+            type: 'POST',
+            url: '/results/images_short',
+            data: {
+                'Search': query,
+            },
+            success: function (msg) {
+                $('#images_hidden').html(msg);
+                $('#images_hidden').hide();
+            }
+        });
+    }
+
+    load_results('{{query}}', '{{page_number}}');
+    {% if current == 'web' and page_number == 1 %}
+        get_images('{{query}}');
+    {% endif %}
+
+    function submit_new_search(event) {
+        event.preventDefault();
+
+        document.getElementById('externals').innerHTML = '';
+        loadExternalLinks();
+        initializeExternalsLayoutAttr();
+        initializeCondenseAttr();
+
+        var query = $('#search_query').val();
+        {% if current == 'shortcuts' %}
+            query = query.replace('!', '');
+        {% endif %}
+
+        if (query.startsWith('!')) {
+            window.location.href = 'https://www.infinitysearchsolo.com/results?q=' + query;
+            return;
+        }
+
+        load_results(query, '1');
+        {% if current == 'web' %}
+            get_images(query);
+        {% endif %}
+    }
+
+    var form = document.getElementById("input_form");
+    form.addEventListener("submit", submit_new_search, true);
+</script>
+
+<script>
+    function change_tab(url) {
+        window.location.href = url + $('#search_query').val();
+    }
+
+    function handle_settings_location_mobile() {
+        if ($(window).width() <= 768) {
+            $('#dropdown-settings').appendTo('#input_text_area');
+            $('#dropdown-settings-button').addClass('is-medium');
+            $('#dropdown-settings').addClass('settings_button_mobile');
+            $('#dashboard_icons_area').hide();
+        } else if ($(window).width() > 768) {
+            $('#dropdown-settings').insertAfter($('#dropdown_settings_area'));
+            $('#dropdown-settings-button').removeClass('is-medium');
+            $('#dropdown-settings').removeClass('settings_button_mobile');
+            $('#dashboard_icons_area').show();
+        }
+
+        if ($(window).width() > 768 && $(window).width() < 940) {
+            $('#default_browser_button').hide();
+        } else if ($(window).width() > 940) {
+            $('#default_browser_button').show();
+        }
+    }
+
+    function debounce(func, time) {
+        var time = time || 100; // 100 by default if no param
+        var timer;
+        return function (event) {
+            if (timer) clearTimeout(timer);
+            timer = setTimeout(func, time, event);
+        };
+    }
+
+    function initializeExternalLinks() {
+        if (localStorage.getItem("external_links_" + window.location.pathname.split('/').pop()) === null) {
+            var externalLinksJSON = [
+                ['Wikipedia Results', 'https://en.wikipedia.org/w/index.php?search=',
+                    '/static/images/favicons/wikipedia.ico'],
+                ['DuckDuckGo Results', 'https://duckduckgo.com/?q=',
+                    '/static/images/favicons/duckduckgo.ico'],
+                ['Google Results', 'https://www.google.com/search?q=',
+                    '/static/images/favicons/google.ico'],
+                ['Youtube Results', 'https://www.youtube.com/results?search_query=',
+                    '/static/images/favicons/youtube.svg'],
+                ['Amazon Results', 'https://www.amazon.com/s?k=',
+                    '/static/images/favicons/amazon.ico'],
+                ['Twitter Results', 'https://twitter.com/search?q=',
+                    '/static/images/favicons/twitter.png'],
+                ['Reddit Results', 'https://www.reddit.com/search/?q=',
+                    '/static/images/favicons/reddit.ico'],
+                ['Stack Overflow Results', 'https://stackoverflow.com/search?q=',
+                    '/static/images/favicons/stackoverflow.ico'],
+                ['GitHub Results', 'https://github.com/search?q=',
+                    '/static/images/favicons/github.ico'],
+                ['GitLab Results', 'https://gitlab.com/search?search=',
+                    '/static/images/favicons/gitlab.png'],
+                ['Reuters Results', 'https://www.reuters.com/search/news?blob=',
+                    '/static/images/favicons/reuters.ico'],
+                ['NPR Results', 'https://www.npr.org/search?query=',
+                    '/static/images/favicons/npr.ico']
+            ];
+            localStorage.setItem("external_links_" + window.location.pathname.split('/').pop(), JSON.stringify(externalLinksJSON));
+        }
+    }
+
+    function loadExternalLinks() {
+        var externalLinks = JSON.parse(localStorage.getItem("external_links_" + window.location.pathname.split('/').pop()));
+        var externals = $("#externals");
+        var query = $("#search_query").val();
+        query = query.replaceAll(' ', '+');
+        for (var i = 0; i < externalLinks.length; ++i) {
+            externals.append("    <div class='card' name='external_card'>" +
+                "        <header class='card-header'>" +
+                "            <p class='card-header-title' style='font-weight: normal; padding-right: 5px;'>" +
+                "                <a id=" + externalLinks[i][1] + " href=" + externalLinks[i][1] + query + " name='external_link_" + i + "'style='display: block;' rel='noreferrer noopener'>" +
+                "                <img onerror='imgError(this)' src='" + externalLinks[i][2] + "' name=external_icon_" + i + "' class='external-icon'>" +
+                "                <span class='external-text' name='external_text_" + i + "'>" +
+                "                    " + externalLinks[i][0] + "" +
+                "            </span>" +
+                "                </a>" +
+                "            </p>" +
+                "           <span class='clickableIcon' onclick='removeExternalClickable(this)' style='cursor: pointer; display: block; margin: auto; margin-right: 6px; min-width: .5em;'>" +
+                "            <img class='handle fa-ellipsis-v' src='/static/images/fa/ellipsis-v.svg' style='cursor: pointer; display: block; margin: auto; margin-right: 12px; ; min-width: .5em; width: 16px; height: 16px;'>" +
+                "           </span>" +
+                "        </header>" +
+                "    </div>"
+            )
+            ;
+        }
+    }
+
+    function saveExternalOrder() {
+        var external_links = $("a[name*='external_link_']");
+        var external_icons = $("img[name*='external_icon_']");
+        var external_text = $("span[name*='external_text_']");
+        var externals = [];
+        for (var i = 0; i < external_links.length; ++i) {
+            externals.push([external_text[i].innerText.trim(), external_links[i].getAttribute("id"),
+                external_icons[i].getAttribute("src")]);
+        }
+        localStorage.setItem("external_links_" + window.location.pathname.split('/').pop(), JSON.stringify(externals));
+    }
+
+    initializeExternalLinks();
+    loadExternalLinks();
+
+    function addExternalResult() {
+        var newExternalLabel = $("#new_external_label").val();
+        var newExternalLink = $("#new_external_link").val();
+        var newExternalIcon = $("#new_external_icon").val();
+        var externals = $("#externals");
+        var query = $("#search_query").val();
+        if (newExternalLink !== "") {
+            var i = externals.children().length;
+            externals.append("    <div class='card' name='external_card' style='margin-bottom: 0;'>" +
+                "        <header class='card-header'>" +
+                "            <p class='card-header-title' style='font-weight: normal; padding-right: 5px;'>" +
+                "                <a id=" + newExternalLink + " href=" + newExternalLink + query + " name='external_link_" + i + "'style='display: block;' rel='noreferrer noopener'>" +
+                "                <img onerror='imgError(this)' src='" + newExternalIcon + "' name=external_icon_" + i + "' class='external-icon'>" +
+                "                <span class='external-text' name='external_text_" + i + "'>" +
+                "                    " + newExternalLabel + "" +
+                "            </span>" +
+                "                </a>" +
+                "            </p>" +
+                "           <span class='clickableIcon' onclick='removeExternalClickable(this)' style='cursor: pointer; display: block; margin: auto; margin-right: 6px; min-width: .5em;'>" +
+                "            <img class='handle fa-ellipsis-v' src='/static/images/fa/ellipsis-v.svg' style='cursor: pointer; display: block; margin: auto; margin-right: 12px; ; min-width: .5em; width: 16px; height: 16px;'>" +
+                "           </span>" +
+                "        </header>" +
+                "    </div>"
+            );
+
+            setExternalsLayoutAttr();
+            saveExternalOrder();
+        } else {
+            window.alert("We need at least the search link! The icon and label are optional.");
+        }
+    }
+
+    var ext = document.getElementById("externals");
+    Sortable.create(ext, {
+        handle: '.handle',
+        animation: 500,
+        onEnd: function () {
+            saveExternalOrder();
+        }
+    });
+
+    $("#external_minus").click(function () {
+        var externals = $(".handle");
+        if (externals.hasClass("fa-ellipsis-v")) {
+            externals.removeClass("fa-ellipsis-v");
+            externals.addClass("fa-trash-alt");
+            externals.attr('src', '/static/images/fa/trash-alt.svg')
+        } else {
+            externals.removeClass("fa-trash-alt");
+            externals.addClass("fa-ellipsis-v");
+            externals.attr('src', '/static/images/fa/ellipsis-v.svg')
+
+        }
+        if (!externalAdd.is(":hidden")) {
+            externalAdd.slideUp();
+        }
+        var defaults = $("#external_input_defaults");
+        if (defaults.is(":hidden")) {
+            defaults.slideDown();
+        } else {
+            defaults.slideUp();
+        }
+
+    });
+
+    function removeExternalClickable(current) {
+        var externalsHandle = $(".handle");
+        if (externalsHandle.hasClass("fa-trash-alt")) {
+            $(current).parent().parent().remove();
+            saveExternalOrder();
+        }
+    }
+
+    var externalAdd = $("#external_link_add_box");
+    $("#external_add").click(function () {
+        var defaults = $("#external_input_defaults");
+        if (!defaults.is(":hidden")) {
+            defaults.slideUp();
+        }
+        if (externalAdd.is(":hidden")) {
+            externalAdd.slideDown();
+        } else {
+            externalAdd.slideUp();
+        }
+        var externals = $(".handle");
+        if (externals.hasClass("fa-trash-alt")) {
+            externals.removeClass("fa-trash-alt");
+            externals.addClass("fa-ellipsis-v");
+            externals.attr('src', '/static/images/fa/ellipsis-v.svg')
+
+        }
+    });
+
+    var newExternalLabel = $("#new_external_label");
+    var newExternalLink = $("#new_external_link");
+    var newExternalIcon = $("#new_external_icon");
+    $("#external_input_add").click(function () {
+        addExternalResult();
+        if (externalAdd.is(":hidden")) {
+            externalAdd.slideDown();
+        } else {
+            externalAdd.slideUp();
+            newExternalLabel.val("");
+            newExternalLink.val("");
+            newExternalIcon.val("");
+        }
+    });
+
+    $("#external_input_cancel").click(function () {
+        if (externalAdd.is(":hidden")) {
+            externalAdd.slideDown();
+        } else {
+            externalAdd.slideUp();
+            newExternalLabel.val("");
+            newExternalLink.val("");
+            newExternalIcon.val("");
+        }
+    });
+
+    $("#external_input_defaults").click(function () {
+        if (window.confirm(
+            "Are you sure?\nThis will delete all of your current sidebar links and set them to our defaults.")) {
+            localStorage.removeItem("external_links_" + window.location.pathname.split('/').pop());
+            initializeExternalLinks();
+            $("#externals").empty();
+            loadExternalLinks();
+            initializeExternalsLayoutAttr();
+            initializeCondenseAttr();
+            var defaults = $("#external_input_defaults");
+            if (!defaults.is(":hidden")) {
+                defaults.slideUp();
+            }
+        }
+    });
+
+    handle_settings_location_mobile();
+    window.addEventListener("resize", debounce(handle_settings_location_mobile, 100));
+
+</script>

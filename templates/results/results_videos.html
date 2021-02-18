@@ -1,0 +1,28 @@
+{% if current == 'videos' %}
+    <div class="column" style="padding-top: 0">
+    {% if videos_results|length == 0 %}
+        <div class="card">
+            <div class="card-content">
+                <div class="content">
+                    We couldn't find any results for <b>"{{query}}"</b>.
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% for link in videos_results %}
+        <div class="card">
+            <div class="card-content">
+                <div class="content">
+                    <a href="{{link.url}}" class="toplink" rel="noreferrer"> <span> <b>{{link.title}}</b> </span> </a>
+                    <br>
+                    <a href="{{link.url}}" class="bottom-url" rel="noreferrer"> <img class="cl-site-icons" src="{{link.favicon}}" height="16px" width="16px" style="vertical-align: middle;" onerror="imgError(this);">{{link.url}}</a>
+                    <br>
+                    <div class="desc">{{link.desc}}</div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
+{% endif %}

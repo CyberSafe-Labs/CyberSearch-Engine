@@ -1,0 +1,82 @@
+{% extends 'pages/article_layout.html' %}
+{% block article %}
+<h1 class="subtitle is-1">How To Make Us Your Default Search Engine</h1>
+<hr/>
+<h3>Firefox Based Browsers (Firefox,
+    Waterfox, Cliqz, etc) </h3>
+<div id="firefox">
+    <h1 class="title is-5">Desktop</h1>
+    <ol>
+        <li>
+            Go to <a href="https://cybersearch.herokuapp.com">https://cybersearch.herokuapp.com</a>, click on the green
+            plus on the search bar (shown in the image below) and click on Add "CyberSearch".
+            <br>
+            <img src="/static/images/default/firefox_1.png">
+        </li>
+        <li>
+            Doing this only adds CyberSearch to the list of search engines available in Firefox.
+
+            To make us your default search engine, go to
+            <a href="about:preferences#search">about:preferences#search</a>
+            and change the default search engine to CyberSearch (as shown in the image below).
+
+            <img src="/static/images/default/firefox_2.png">
+        </li>
+    </ol>
+
+    <h1 class="title is-5">Mobile</h1>
+    On mobile, all that you need to do is go to your settings, press the search option, then press add search engine,
+    and set the URL area to <b>https://cybersearch.herokuapp.com/results?q=%s</b>.
+
+</div>
+
+
+<hr/>
+<h3>Chrome Based Browsers (Chrome, Brave, Opera, etc)</h3>
+<div id="chrome">
+    <ol>
+        <li>Go to settings</li>
+        <li>Go to search engines</li>
+        <li>Press manage search engines</li>
+        <li>Press add</li>
+        <li>Add the information shown below</li>
+    </ol>
+
+    <img src="/static/images/default/Brave.png">
+
+    The search engine and keyword value can be set to anything but the
+    URL has to be <b>https://cybersearch.herokuapp.com/results?q=%s</b>
+
+</div>
+<hr/>
+<h3>Vivaldi</h3>
+<div id="vivaldi">
+    <ol>
+        <li>Go to settings</li>
+        <li>Go to search</li>
+        <li>Press the + button</li>
+        <li>Add the information shown below</li>
+    </ol>
+
+    <img src="/static/images/default/Vivaldi.png">
+
+    The search engine and nickname value can be set to anything but the
+    URL has to be <b>https://cybersearch.herokuapp.com/results?q=%s</b>
+
+</div>
+
+<hr/>
+<h3>Safari</h3>
+<div id="safari">
+    Currently on Safari, there is no option to add custom search engines. Hopefully they change this one day.
+</div>
+
+<hr/>
+<h3>Other Browsers</h3>
+<div id="other">
+    If your browser is not listed above and you need more instructions, please <a href="/contact">contact us</a> and
+    we will update our instructions to include your browser.
+</div>
+<br>
+{% endblock %}
+
