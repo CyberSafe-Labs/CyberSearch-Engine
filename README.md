@@ -6,8 +6,8 @@ An Open Source Search Engine written in Python and scrapes results from Bing.
 To run this program, all that you need to do is make sure that you have python3 and pip3 installed
 and run:
 ```shell script
-git clone https://gitlab.com/infinitysearch/infinity-search-solo.git
-cd infinity-search-solo
+git clone https://github.com/CyberSafe-Labs/CyberSearch-Engine.git
+cd CyberSearch-Engine
 # pip install the required dependencies
 pip3 install -r requirements.txt
 ```
